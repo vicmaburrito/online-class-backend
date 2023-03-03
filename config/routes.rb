@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'classes/index'
+  get 'classes/show'
+  get 'classes/new'
+  get 'classes/edit'
+  get 'classes/create'
+  get 'classes/update'
+  get 'classes/destroy'
   get 'cities/index'
   get 'cities/show'
   get 'cities/new'
