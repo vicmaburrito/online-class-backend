@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'teachers/index'
+  get 'teachers/show'
+  get 'teachers/new'
+  get 'teachers/edit'
+  get 'teachers/create'
+  get 'teachers/update'
+  get 'teachers/destroy'
   get 'schedules/index'
   get 'schedules/show'
   get 'schedules/new'
