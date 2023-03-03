@@ -1,48 +1,13 @@
 Rails.application.routes.draw do
-  get 'enrollments/index'
-  get 'enrollments/show'
-  get 'enrollments/new'
-  get 'enrollments/edit'
-  get 'enrollments/create'
-  get 'enrollments/update'
-  get 'enrollments/destroy'
-  get 'classes/index'
-  get 'classes/show'
-  get 'classes/new'
-  get 'classes/edit'
-  get 'classes/create'
-  get 'classes/update'
-  get 'classes/destroy'
-  get 'cities/index'
-  get 'cities/show'
-  get 'cities/new'
-  get 'cities/edit'
-  get 'cities/create'
-  get 'cities/update'
-  get 'cities/destroy'
-  get 'teachers/index'
-  get 'teachers/show'
-  get 'teachers/new'
-  get 'teachers/edit'
-  get 'teachers/create'
-  get 'teachers/update'
-  get 'teachers/destroy'
-  get 'schedules/index'
-  get 'schedules/show'
-  get 'schedules/new'
-  get 'schedules/edit'
-  get 'schedules/create'
-  get 'schedules/update'
-  get 'schedules/destroy'
-  get 'users/index'
-  get 'users/show'
-  get 'users/new'
-  get 'users/edit'
-  get 'users/create'
-  get 'users/update'
-  get 'users/destroy'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  resources :users, only: [:index, :show, :create, :update, :destroy]
+  resources :schedules, only: [:index, :show, :create, :update, :destroy]
+  resources :teachers, only: [:index, :show, :create, :update, :destroy]
+  resources :cities, only: [:index, :show, :create, :update, :destroy]
+  resources :classes, only: [:index, :show, :create, :update, :destroy]
+  resources :enrollments, only: [:index, :show, :create, :update, :destroy]
+
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
 end
