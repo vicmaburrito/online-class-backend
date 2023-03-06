@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  post '/auth/login', to: 'authentication#login'
   resources :schedules, only: [:index, :show, :create, :update, :destroy]
   resources :teachers, only: [:index, :show, :create, :update, :destroy]
   resources :cities, only: [:index, :show, :create, :update, :destroy]
