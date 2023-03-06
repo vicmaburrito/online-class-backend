@@ -1,41 +1,40 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user, only: [:create]
+  before_action :set_user, only: %i[ show update destroy ]
 
   # GET /teachers or /teachers.json
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users, status: 200
   end
 
   # GET /teachers/1 or /teachers/1.json
   def show
-    render json: @users
+    render json: @user, status: 200
   end
 
   # POST  /teachers or /teachers.json
   def create
-    @users= User.new(user_params)
+    @user = User.new(user_params)
 
-    if @users.save
-      render json: @users, status: :created, location: @users
+    if @user.save
+      render json: @user, status: 201
     else
-      render json: @users.errors, status: :unprocessable_entity
+      render json: @user.errors, status: 503
     end
   end
 
   # PATCH/PUT /teachers/1 or /teachers/1.json
   def update
-    if @users.update(user_params)
-      render json: @users
-    else
-      render json: @users.errors, status: :unprocessable_entity
+    unless @user.update(user_params)
+      render json: @users.errors, status: :unprocessable_entity 
     end
   end
 
   # DELETE /teachers/1 or /teachers/1.json
   def destroy
-    @users.destroy
+    @user.destroy
   end
 
   private
@@ -46,6 +45,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user, {})
+      params.permit(:username, :email, :password)
     end
 end
