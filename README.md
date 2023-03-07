@@ -11,6 +11,8 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
+    - [JWT](#jwt)
+    - [ Token](#-token)
   - [🚀 Live Demo ](#-live-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
@@ -67,7 +69,24 @@
 
 > The next key features are availble in this project.
 
-  
+### <b>JWT</b>
+
+JWT (JSON Web Token) is a standard that is contained in the RFC 7519 document.
+
+In it, a mechanism is defined to be able to propagate between two parties, and in a secure way, the identity of a certain user, also with a series of claims or privileges.
+
+These privileges are encoded in JSON-type objects, which are embedded within the payload or body of a message that is digitally signed.
+
+### <b> Token</b>
+
+Is a text string that has three Base64-encoded parts, each separated by a dot
+
+* <b>Header</b>: the algorithm and the type of token are indicated, which in this case we use JWT token.
+
+* <b>Payload</b>: the user data and privileges appear, as well as all the information that we want to add, all the data that we deem convenient.
+
+[More Info](https://openwebinars.net/blog/que-es-json-web-token-y-como-funciona/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LIVE DEMO -->
