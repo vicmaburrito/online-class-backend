@@ -215,8 +215,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   debug
-  jwt
   foreman
+  jwt
   pg (~> 1.1)
   pry
   puma (~> 5.0)
