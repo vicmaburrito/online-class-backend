@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :max_num_students
-      t.integer :teacher_id
+      t.integer :teacher_id # foreign key
       t.timestamps
     end
   end

@@ -4,7 +4,7 @@ class CreateSchedules < ActiveRecord::Migration[7.0]
       t.date :day_of_week
       t.datetime :start_time
       t.time :duration
-      t.class_id :integer
+      t.integer :course_id # foreign key
       t.timestamps
     end
   end
