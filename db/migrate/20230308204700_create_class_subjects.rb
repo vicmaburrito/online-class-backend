@@ -4,7 +4,7 @@ class CreateClassSubjects < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :max_num_students
-
+      t.teacher_id :integer
       t.timestamps
     end
   end
