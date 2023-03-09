@@ -15,7 +15,7 @@ class EnrollmentsController < ApplicationController
 
   # POST /classes or /classes.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
+    @enrollment = Enrollment.new(enrollment_params.merge({user_id: current_user.id}))
 
     if @enrollment.save
       render json: @enrollment, status: :created, location: @enrollment
@@ -26,7 +26,7 @@ class EnrollmentsController < ApplicationController
 
   # PATCH/PUT /classes/1 or /classes/1.json
   def update
-    if @enrollment.update(enrollment_params)
+    if @enrollment.update(enrollment_params.merge({user_id: current_user.id}))
       render json: @enrollment
     else
       render json: @enrollment.errors, status: :unprocessable_entity
@@ -46,6 +46,6 @@ class EnrollmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def enrollment_params
-      params.fetch(:enrollment, {})
+      params.fetch(:course_id,:city_id)
     end
 end

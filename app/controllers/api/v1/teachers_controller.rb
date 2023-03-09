@@ -1,4 +1,4 @@
-class TeachersController < ApplicationController
+class Api::V1::TeachersController < ApplicationController
   before_action :set_teacher, only: %i[ show edit update destroy ]
 
   # GET /teachers or /teachers.json
@@ -46,6 +46,6 @@ class TeachersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def teacher_params
-      params.fetch(:teacher, {})
+      params.fetch(:name,:last_name,:degree)
     end
 end

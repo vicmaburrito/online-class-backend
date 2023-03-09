@@ -46,6 +46,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.fetch(:schedule, {})
+      params.fetch(:schedule,_:day_of_week,:start_time,:duration,:course_id,:course_id)
     end
 end

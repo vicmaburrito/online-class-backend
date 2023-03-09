@@ -1,4 +1,5 @@
-class CoursesController < ApplicationController
+class  Api::V1::CoursesController < ApplicationController
+  
   before_action :set_course, only: %i[ show edit update destroy ]
 
   # GET /classes or /classes.json
@@ -46,6 +47,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.fetch(:course, {})
+      params.fetch(:name,:description,:max_num_students,:teacher_id)
     end
 end
