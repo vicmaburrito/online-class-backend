@@ -1,0 +1,50 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/cities":
+    get:
+      summary: fetch data to the citites table
+      tags:
+      - data from the cities page
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  country_name:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                required:
+                - id
+                - country_name
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  country_name:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                required:
+                - id
+                - country_name
+servers:
+- url: http://127.0.0.1:5000/
+  variables:
+    defaultHost:
+      default: http://127.0.0.1:5000/
