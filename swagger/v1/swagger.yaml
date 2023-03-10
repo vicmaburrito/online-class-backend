@@ -43,6 +43,82 @@ paths:
                 required:
                 - id
                 - country_name
+    post:
+      summary: Creates a city
+      tags:
+      - Cities
+      parameters: []
+      responses:
+        '201':
+          description: city created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city_name:
+                  type: string
+              required:
+              - city_name
+  api/v1/cities/{id}:
+    get:
+      summary: show a city
+      tags:
+      - Cities
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: City founded
+    delete:
+      summary: Delete a city
+      tags:
+      - Cities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: City deleted
+  "/api/v1/cities/{id}":
+    patch:
+      summary: Updates the selected city
+      tags:
+      - Cities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: city updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city_name:
+                  type: string
+              required:
+              - city_name
 servers:
 - url: http://127.0.0.1:5000/
   variables:

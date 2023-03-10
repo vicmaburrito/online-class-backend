@@ -15,7 +15,7 @@ class Api::V1::CitiesController < ApplicationController
 
   # POST /cities or /cities.json
   def create
-    @city = City.new(country_name: city_params)
+    @city = City.new(city_params)
 
     if @city.save
       render json: @city, status: :created
@@ -46,7 +46,7 @@ class Api::V1::CitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def city_params
-      params.fetch(:country_name)
+      params.permit(:city_name)
     end
-
+    
 end
