@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :schedules, only: [:index, :show, :create, :update, :destroy]
   resources :courses, only: [:index, :show, :create, :update, :destroy]
   resources :enrollments, only: [:index, :show, :create, :update, :destroy]
-root 'api/v1/cities#index'
 
 namespace :api do
   namespace :v1 do

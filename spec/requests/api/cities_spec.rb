@@ -115,11 +115,6 @@ path 'api/v1/cities/{id}' do
       run_test!
     end
   end
-  
-  
-  
-  
-  
 end
       end
       
