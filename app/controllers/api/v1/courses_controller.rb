@@ -16,7 +16,7 @@ class  Api::V1::CoursesController < ApplicationController
 
   # POST /classes or /classes.json
   def create
-    @course = Course.new(class_params)
+    @course = Course.new(course_params)
 
     if @course.save
       render json: @course, status: :created, location: @course
@@ -27,7 +27,7 @@ class  Api::V1::CoursesController < ApplicationController
 
   # PATCH/PUT /classes/1 or /classes/1.json
   def update
-    if @course.update(class_params)
+    if @course.update(course_params)
       render json: @course
     else
       render json: @course.errors, status: :unprocessable_entity
@@ -42,11 +42,11 @@ class  Api::V1::CoursesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
-      @class = Course.find(params[:id])
+      @course = Course.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.fetch(:name,:description,:max_num_students,:teacher_id)
+      params.permit(:name,:description,:max_num_students,:teacher_id)
     end
 end

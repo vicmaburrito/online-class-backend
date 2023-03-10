@@ -44,7 +44,7 @@ RSpec.describe 'api/teachers', type: :request do
   
         response '201', 'Teacher created' do
             
-          let(:teacher_params) { {name: 'ddddddd', last_name: 'yyy', degree: 'course_id' } }
+          let(:teacher_params) { {name: 'emanuel', last_name: 'rogelio', degree: 'mastery' } }
           run_test!
         end
   
