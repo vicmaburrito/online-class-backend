@@ -4,12 +4,11 @@ Rails.application.routes.draw do
   resources :users
   post '/auth/login', to: 'authentication#login'
 
-  resources :schedules, only: [:index, :show, :create, :update, :destroy]
-  resources :courses, only: [:index, :show, :create, :update, :destroy]
-  resources :enrollments, only: [:index, :show, :create, :update, :destroy]
-
-namespace :api do
-  namespace :v1 do
+  
+  namespace :api do
+    namespace :v1 do
+    resources :schedules, only: [:index, :show, :create, :update, :destroy]
+    resources :enrollments, only: [:index, :show, :create, :update, :destroy]
     resources :courses, only: [:index, :show, :create, :update, :destroy]
     resources :cities, only: [:index, :show, :create, :update, :destroy]
     resources :teachers, only: [:index, :show, :create, :update, :destroy]

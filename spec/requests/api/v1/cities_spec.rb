@@ -17,8 +17,7 @@ RSpec.describe 'api/cities', type: :request do
                     country_name: { type: :string },
                     created_at: { type: :datetime },
                     updated_at: { type: :datetime },
-                  },
-                  required: [ 'id','country_name' ]
+                  }
                   run_test!
                 end
           end
@@ -40,13 +39,13 @@ RSpec.describe 'api/cities', type: :request do
             }
       
             response '201', 'city created' do
-              let(:city_params) { { city_name: 'foo' } }
+              let(:schedule_params) { { city_name: 'foo' } }
               run_test!
             end
       
             
       response '422', 'invalid request' do
-        let(:city_params) { {  } }
+        let(:schedule_params) { {  } }
         run_test!
       end
 

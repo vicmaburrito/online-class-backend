@@ -1,4 +1,4 @@
-class SchedulesController < ApplicationController
+class Api::V1::SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[ show edit update destroy ]
 
   # GET /schedules or /schedules.json
@@ -18,7 +18,7 @@ class SchedulesController < ApplicationController
     @schedules = Schedule.new(schedule_params)
 
     if @schedules.save
-      render json: @schedules, status: :created, location: @schedules
+      render json: @schedules, status: :created
     else
       render json: @schedules.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.fetch(:schedule,_:day_of_week,:start_time,:duration,:course_id,:course_id)
+      params.permit(:day_of_week,:start_time,:duration,:course_id)
     end
 end
