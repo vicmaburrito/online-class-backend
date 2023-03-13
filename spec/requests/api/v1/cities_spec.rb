@@ -49,7 +49,6 @@ RSpec.describe 'api/cities', type: :request do
           run_test!
         end
 
-
         response '422', 'invalid request' do
           let(:city_params) { {} }
           run_test!
@@ -73,12 +72,10 @@ RSpec.describe 'api/cities', type: :request do
         response '200', 'City founded' do
           let(:id) { @city.id }
 
-
           run_test!
         end
       end
     end
-
 
     # update
     path '/api/v1/cities/{id}' do

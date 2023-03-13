@@ -25,9 +25,6 @@ paths:
                     type: datetime
                   updated_at:
                     type: datetime
-                required:
-                - id
-                - country_name
             application/xml:
               schema:
                 type: array
@@ -40,9 +37,6 @@ paths:
                     type: datetime
                   updated_at:
                     type: datetime
-                required:
-                - id
-                - country_name
     post:
       summary: Creates a city
       tags:
@@ -61,6 +55,10 @@ paths:
               properties:
                 city_name:
                   type: string
+                created_at:
+                  type: datetime
+                updated_at:
+                  type: datetime
               required:
               - city_name
   api/v1/cities/{id}:
@@ -119,6 +117,567 @@ paths:
                   type: string
               required:
               - city_name
+  "/api/v1/courses":
+    get:
+      summary: fetch data to the courses table
+      tags:
+      - data from the courses route
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  max_num_students:
+                    type: integer
+                  teacher_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  max_num_students:
+                    type: integer
+                  teacher_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+    post:
+      summary: Creates a course
+      tags:
+      - Course
+      parameters: []
+      responses:
+        '201':
+          description: Course created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                max_num_students:
+                  type: integer
+                teacher_id:
+                  type: integer
+              required:
+              - name
+              - description
+              - teacher_id, max_num_students
+  api/v1/courses/{id}:
+    get:
+      summary: show a course
+      tags:
+      - Teacher
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: Course founded founded
+    delete:
+      summary: Delete a course
+      tags:
+      - Courses
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Course deleted
+  "/api/v1/courses/{id}":
+    patch:
+      summary: Updates the selected Course
+      tags:
+      - Course
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Course updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                max_num_students:
+                  type: integer
+              required:
+              - name
+              - description
+              - max_num_students
+  "/api/v1/enrollments":
+    get:
+      summary: fetch data to the enrollments table
+      tags:
+      - data from the enrollments route
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  sign_up_date:
+                    type: date
+                  course_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  city_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  sign_up_date:
+                    type: date
+                  course_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  city_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+    post:
+      summary: Creates a enrollments
+      tags:
+      - Enrollments
+      parameters: []
+      responses:
+        '201':
+          description: Enrollment created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sign_up_date:
+                  type: date
+                course_id:
+                  type: integer
+                user_id:
+                  type: integer
+                city_id:
+                  type: integer
+              required:
+              - sign_up_date
+              - course_id
+              - user_id
+              - city_id
+  api/v1/enrollments/{id}:
+    get:
+      summary: show an enrollment
+      tags:
+      - Enrollment
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            sign_up_date:
+              type: date
+            course_id:
+              type: integer
+            user_id:
+              type: integer
+            city_id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: 'Enrollment founded '
+    delete:
+      summary: Delete a enrollment
+      tags:
+      - Enrollments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Enrollment deleted
+  "/api/v1/enrollments/{id}":
+    patch:
+      summary: Updates the selected Enrollment
+      tags:
+      - Enrollment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Enrollment updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                sign_up_date:
+                  type: date
+                course_id:
+                  type: integer
+                user_id:
+                  type: integer
+                city_id:
+                  type: integer
+              required:
+              - sign_up_date
+              - course_id
+              - user_id
+              - city_id
+  "/api/v1/schedules":
+    get:
+      summary: fetch data to the schedules table
+      tags:
+      - data from the schedules route
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  day_of_week:
+                    type: date
+                  start_time:
+                    type: time
+                  duration:
+                    type: time
+                  course_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  day_of_week:
+                    type: date
+                  start_time:
+                    type: time
+                  duration:
+                    type: time
+                  course_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+    post:
+      summary: Creates a squedule
+      tags:
+      - Schedule
+      parameters: []
+      responses:
+        '201':
+          description: Schedule created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                day_of_week:
+                  type: date
+                start_time:
+                  type: time
+                duration:
+                  type: time
+                course_id:
+                  type: integer
+              required:
+              - day_of_week
+              - start_time
+              - duration
+              - course_id
+  api/v1/schedules/{id}:
+    get:
+      summary: show a schedule
+      tags:
+      - Schedule
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            day_of_week:
+              type: date
+            start_time:
+              type: time
+            duration:
+              type: time
+            course_id:
+              type: integer
+          required:
+          - day_of_week
+          - start_time
+          - duration
+          - course_id
+        required: true
+      responses:
+        '200':
+          description: Schedule founded founded
+    delete:
+      summary: Delete a schedule
+      tags:
+      - Schedule
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Schedule deleted
+  "/api/v1/schedules/{id}":
+    patch:
+      summary: Updates the selected Schedule
+      tags:
+      - Schedule
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Schedule updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                day_of_week:
+                  type: date
+                start_time:
+                  type: time
+                duration:
+                  type: time
+                course_id:
+                  type: integer
+              required:
+              - day_of_week
+              - start_time
+              - duration
+              - course_id
+  "/api/v1/teachers":
+    get:
+      summary: fetch data to the teachers table
+      tags:
+      - data from the teachers route
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  last_name:
+                    type: string
+                  degree:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                required:
+                - name
+                - last_name
+                - degree
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  last_name:
+                    type: string
+                  degree:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                required:
+                - name
+                - last_name
+                - degree
+    post:
+      summary: Creates a teacher
+      tags:
+      - Teacher
+      parameters: []
+      responses:
+        '201':
+          description: Teacher created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                last_name:
+                  type: string
+                degree:
+                  type: string
+              required:
+              - name
+              - last_name
+              - degree
+  api/v1/teachers/{id}:
+    get:
+      summary: show a teacher
+      tags:
+      - Teacher
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: Teacher founded founded
+    delete:
+      summary: Delete a teacher
+      tags:
+      - Teachers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Teacher deleted
+  "/api/v1/teachers/{id}":
+    patch:
+      summary: Updates the selected teacher
+      tags:
+      - Teacher
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Teacher updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                last_name:
+                  type: string
+                degree:
+                  type: string
+              required:
+              - last_name
+              - name
+              - degree
 servers:
 - url: http://127.0.0.1:5000/
   variables:

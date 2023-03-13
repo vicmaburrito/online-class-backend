@@ -51,14 +51,12 @@ RSpec.describe 'api/v1/schedules', type: :request do
           required: %w[day_of_week start_time duration course_id]
         }
 
-
         response '201', 'Schedule created' do
           let(:schedule_params) do
             { day_of_week: Date.today, start_time: Time.now, duration: Time.now, course_id: @course.id }
           end
           run_test!
         end
-
 
         response '422', 'invalid request' do
           let(:schedule_params) { {} }
@@ -90,7 +88,6 @@ RSpec.describe 'api/v1/schedules', type: :request do
         end
       end
     end
-
 
     # update
     path '/api/v1/schedules/{id}' do

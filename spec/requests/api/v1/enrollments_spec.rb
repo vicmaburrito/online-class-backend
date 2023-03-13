@@ -1,6 +1,5 @@
 require 'swagger_helper'
 
-
 RSpec.describe 'api/v1/enrollments', type: :request do
   before(:each) do
     @user = User.create(username: 'juan', email: 'email@hotmail.com', password: '153624')
@@ -54,14 +53,12 @@ RSpec.describe 'api/v1/enrollments', type: :request do
           required: %w[sign_up_date course_id user_id city_id]
         }
 
-
         response '201', 'Enrollment created' do
           let(:enrollment_params) do
             { sign_up_date: Date.today, course_id: @course.id, user_id: @user.id, city_id: @city.id }
           end
           run_test!
         end
-
 
         response '422', 'invalid request' do
           let(:enrollment_params) { {} }
@@ -94,7 +91,6 @@ RSpec.describe 'api/v1/enrollments', type: :request do
         end
       end
     end
-
 
     # update
     path '/api/v1/enrollments/{id}' do

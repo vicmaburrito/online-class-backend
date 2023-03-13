@@ -55,7 +55,6 @@ RSpec.describe 'api/v1/courses', type: :request do
           run_test!
         end
 
-
         response '422', 'invalid request' do
           let(:course_params) { {} }
           run_test!
@@ -78,8 +77,6 @@ RSpec.describe 'api/v1/courses', type: :request do
 
         response '200', 'Course founded founded' do
           let(:id) { @course.id }
-
-
           run_test!
         end
       end

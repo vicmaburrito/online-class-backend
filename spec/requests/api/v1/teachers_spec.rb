@@ -51,7 +51,6 @@ RSpec.describe 'api/v1/teachers', type: :request do
           run_test!
         end
 
-
         response '422', 'invalid request' do
           let(:teacher_params) { {} }
           run_test!
@@ -74,13 +73,10 @@ RSpec.describe 'api/v1/teachers', type: :request do
 
         response '200', 'Teacher founded founded' do
           let(:id) { @teacher.id }
-
-
           run_test!
         end
       end
     end
-
 
     # update
     path '/api/v1/teachers/{id}' do
