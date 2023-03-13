@@ -30,7 +30,7 @@ gem 'jwt'
 
 gem 'pry'
 
-gem  'rswag'
+gem 'rswag'
 
 gem 'rspec-rails'
 
