@@ -16,6 +16,8 @@ RSpec.describe 'api/v1/schedules', type: :request do
                 start_time: { type: :time },
                 duration: { type: :time },
                 course_id: { type: :integer },  
+                created_at: { type: :datetime },
+                updated_at: { type: :datetime },
               }
               run_test!
             end

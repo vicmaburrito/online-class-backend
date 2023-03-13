@@ -1,4 +1,4 @@
-class EnrollmentsController < ApplicationController
+class Api::V1::EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy ]
 
   # GET /classes or /classes.json
@@ -15,10 +15,10 @@ class EnrollmentsController < ApplicationController
 
   # POST /classes or /classes.json
   def create
-    @enrollment = Enrollment.new(enrollment_params.merge({user_id: current_user.id}))
+    @enrollment = Enrollment.new(enrollment_params)
 
     if @enrollment.save
-      render json: @enrollment, status: :created, location: @enrollment
+      render json: @enrollment, status: :created
     else
       render json: @enrollment.errors, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class EnrollmentsController < ApplicationController
 
   # PATCH/PUT /classes/1 or /classes/1.json
   def update
-    if @enrollment.update(enrollment_params.merge({user_id: current_user.id}))
+    if @enrollment.update(enrollment_params)
       render json: @enrollment
     else
       render json: @enrollment.errors, status: :unprocessable_entity
@@ -40,12 +40,13 @@ class EnrollmentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
     def set_enrollment
-      @city = Enrollment.find(params[:id])
+      @enrollment = Enrollment.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def enrollment_params
-      params.fetch(:course_id,:city_id)
+      params.permit(:sign_up_date,:course_id,:city_id,:user_id)
     end
 end

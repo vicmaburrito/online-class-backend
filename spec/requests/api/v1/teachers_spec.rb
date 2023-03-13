@@ -1,6 +1,7 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/teachers', type: :request do
+RSpec.describe 'api/v1/teachers', type: :request do
+  
     
   # index
   describe 'Teachers API' do
