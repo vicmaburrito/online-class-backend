@@ -1,6 +1,14 @@
 require 'swagger_helper'
-
+include JwtToken
 RSpec.describe 'api/cities', type: :request do
+
+  before(:each) do
+    @user = User.create(username: "juan",email: "email@hotmail.com",password: '153624')
+    @city = City.create(city_name: "Brasil")  
+    token = jwt_encode({ user_id: @user.id })
+    headers = { 'Authorization' => "Bearer #{token}" }
+    allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(headers)
+  end
 
   # index
     describe 'City API' do
@@ -69,7 +77,7 @@ path 'api/v1/cities/{id}' do
     }
 
     response '200', 'City founded' do
-      let(:id) { City.create(city_name: 'ar').id }
+      let(:id) { @city.id }
 
       
       run_test!
@@ -97,7 +105,7 @@ path '/api/v1/cities/{id}' do
     }
 
     response '200', 'city updated' do
-      let(:id) { City.create(city_name: 'ar').id }
+      let(:id) { @city.id }
       let(:city_params) { { city_name: 'new' } }
       run_test!
     end
@@ -112,7 +120,7 @@ path 'api/v1/cities/{id}' do
     parameter name: :id, in: :path, type: :integer
   
     response '204', 'City deleted' do
-      let(:id) { City.create(city_name: 'ar').id }
+      let(:id) { @city.id }
       run_test!
     end
   end

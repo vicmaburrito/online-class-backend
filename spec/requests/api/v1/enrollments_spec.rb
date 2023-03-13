@@ -1,9 +1,9 @@
 require 'swagger_helper'
+include JwtToken
+
 
 RSpec.describe 'api/v1/enrollments', type: :request do
- # index
- describe 'Enrollments API' do
-
+ 
   before(:each) do
     @user = User.create(username: "juan",email: "email@hotmail.com",password: '153624')
     @city = City.create(city_name: "Brasil")
@@ -11,7 +11,14 @@ RSpec.describe 'api/v1/enrollments', type: :request do
     @course = Course.create(name: "French", description: "english classes", max_num_students: 20,teacher_id: @teacher.id)
     @schedule = Schedule.create(day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: @course.id)
     @enrollment = Enrollment.create(sign_up_date: Date.today, course_id: @course.id,user_id: @user.id, city_id: @city.id)
+    token = jwt_encode({ user_id: @user.id })
+    headers = { 'Authorization' => "Bearer #{token}" }
+    allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(headers)
   end
+
+ # index
+ describe 'Enrollments API' do
+
 
     path '/api/v1/enrollments'  do
   

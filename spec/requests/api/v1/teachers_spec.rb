@@ -2,6 +2,13 @@ require 'swagger_helper'
 
 RSpec.describe 'api/v1/teachers', type: :request do
   
+  before(:each) do
+    @user = User.create(username: "juan",email: "email@hotmail.com",password: '153624')
+    @teacher = Teacher.create(name: 'Carlos',last_name: 'perez',degree: 'mastery')
+    token = jwt_encode({ user_id: @user.id })
+    headers = { 'Authorization' => "Bearer #{token}" }
+    allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(headers)
+  end
     
   # index
   describe 'Teachers API' do
@@ -73,7 +80,7 @@ parameter name: :id, in: :path, schema: {
 }
 
 response '200', 'Teacher founded founded' do
-  let(:id) { Teacher.create(name: 'ar',last_name: 'aa', degree: 'degree').id }
+  let(:id) { @teacher.id }
 
   
   run_test!
@@ -103,7 +110,7 @@ parameter name: :teacher_params, in: :body, schema: {
 }
 
 response '200', 'Teacher updated' do
-  let(:id) { Teacher.create(name: 'ar',last_name: 'aa', degree: 'degree').id }
+  let(:id) { @teacher.id }
   let(:teacher_params) { { name: 'jose',last_name: 'new',degree:'apol'} }
   run_test!
 end
@@ -118,7 +125,7 @@ consumes 'application/json'
 parameter name: :id, in: :path, type: :integer
 
 response '204', 'Teacher deleted' do
-  let(:id) { Teacher.create(name: 'ar',last_name: 'aa', degree: 'degree').id }
+  let(:id) { @teacher.id }
   run_test!
 end
 end

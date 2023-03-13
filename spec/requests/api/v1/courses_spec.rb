@@ -1,7 +1,17 @@
 require 'swagger_helper'
+include JwtToken
 
 RSpec.describe 'api/v1/courses', type: :request do
- # index
+ 
+  before(:each) do
+    @user = User.create(username: "juan",email: "email@hotmail.com",password: '153624')
+    @teacher = Teacher.create(name: 'Carlos',last_name: 'perez',degree: 'mastery')
+    @course = Course.create(name: "French", description: "english classes", max_num_students: 20,teacher_id: @teacher.id)
+    token = jwt_encode({ user_id: @user.id })
+    headers = { 'Authorization' => "Bearer #{token}" }
+    allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(headers)
+  end
+  # index
  describe 'Courses API' do
 
     path '/api/v1/courses'  do
@@ -43,8 +53,8 @@ RSpec.describe 'api/v1/courses', type: :request do
         }
   
         response '201', 'Course created' do
-            teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-          let(:course_params) { {name: 'emanuel',description: 'ssss', max_num_students: 10, teacher_id:  teacher.id} }
+          
+          let(:course_params) { {name: 'emanuel',description: 'from another country', max_num_students: 10, teacher_id: @teacher.id} }
           run_test!
         end
   
@@ -72,8 +82,8 @@ parameter name: :id, in: :path, schema: {
 }
 
 response '200', 'Course founded founded' do
-    teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-  let(:id) { Course.create(name: 'emanuel',description: 'ssss', max_num_students: 10, teacher_id:  teacher.id).id }
+    
+  let(:id) { @course.id }
   
   
   run_test!
@@ -103,9 +113,9 @@ parameter name: :course_params, in: :body, schema: {
 }
 
 response '200', 'Course updated' do
-    teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-  let(:id) { Course.create(name: 'emanuel',description: 'ssss', max_num_students: 10, teacher_id:  teacher.id).id }
-  let(:course_params) { {name: 'emanuel',description: 'ssss', max_num_students: 10, teacher_id:  teacher.id} }
+  
+  let(:id) { @course.id }
+  let(:course_params) { {name: 'emanuel',description: 'frmo puebla', max_num_students: 10, teacher_id:  @teacher.id} }
   run_test!
 end
 end
@@ -119,8 +129,8 @@ consumes 'application/json'
 parameter name: :id, in: :path, type: :integer
 
 response '204', 'Course deleted' do
-    teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-    let(:id) { Course.create(name: 'emanuel',description: 'ssss', max_num_students: 10, teacher_id:  teacher.id).id }
+  
+    let(:id) { @course.id }
   run_test!
 end
 end

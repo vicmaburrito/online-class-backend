@@ -1,7 +1,20 @@
 require 'swagger_helper'
+include JwtToken
 
 RSpec.describe 'api/v1/schedules', type: :request do
- # index
+  
+  before(:each) do
+    @user = User.create(username: "juan",email: "email@hotmail.com",password: '153624')
+    @city = City.create(city_name: "Brasil")
+    @teacher = Teacher.create(name: 'Carlos',last_name: 'perez',degree: 'mastery')
+    @course = Course.create(name: "French", description: "english classes", max_num_students: 20,teacher_id: @teacher.id)
+    @schedule = Schedule.create(day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: @course.id)
+    token = jwt_encode({ user_id: @user.id })
+    headers = { 'Authorization' => "Bearer #{token}" }
+    allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(headers)
+  end
+ 
+  # index
  describe 'Schedules API' do
 
     path '/api/v1/schedules'  do
@@ -43,9 +56,7 @@ RSpec.describe 'api/v1/schedules', type: :request do
         
   
         response '201', 'Schedule created' do
-          teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-          course = Course.create(name: "english", description: "english classes", max_num_students: 20,teacher_id: teacher.id)
-          let(:schedule_params) { {day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: course.id} }
+          let(:schedule_params) { {day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: @course.id} }
           run_test!
         end
   
@@ -76,9 +87,8 @@ parameter name: :id, in: :path, schema: {
 }
 
 response '200', 'Schedule founded founded' do
-  teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-  course = Course.create(name: "english", description: "english classes", max_num_students: 20,teacher_id: teacher.id)
-let(:id) { Schedule.create(day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: course.id).id } 
+  
+let(:id) { @schedule.id } 
   
   run_test!
 
@@ -124,9 +134,8 @@ consumes 'application/json'
 parameter name: :id, in: :path, type: :integer
 
 response '204', 'Schedule deleted' do
-    teacher = Teacher.create(name: 'jose',last_name: 'zepeda', degree: 'degree')
-    course = Course.create(name: "english", description: "english classes", max_num_students: 20,teacher_id: Teacher.first.id)
-    let(:id) { Schedule.create(day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: course.id).id }
+
+    let(:id) { @schedule.id }
   run_test!
 end
 end
