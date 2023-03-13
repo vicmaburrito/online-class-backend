@@ -170,8 +170,11 @@ To run the project, execute the following command:
  
 
 ### Run tests
+- In order to check the test for the endpoints, yout can execute 
+**rspec spec/requests/api/v1/**.
+or if you desire to test one file you can execute
+**rspec spec/requests/api/v1/YOUR_FILE_spec.rb**.
 
-- incomming.
 ### Deployment
 
 You can deploy this project using:
