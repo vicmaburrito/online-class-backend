@@ -30,6 +30,8 @@ gem 'jwt'
 
 gem 'pry'
 
+gem 'rswag'
+
 gem 'rspec-rails'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,4 +1,4 @@
-class TeachersController < ApplicationController
+class Api::V1::TeachersController < ApplicationController
   before_action :set_teacher, only: %i[ show edit update destroy ]
 
   # GET /teachers or /teachers.json
@@ -18,7 +18,7 @@ class TeachersController < ApplicationController
     @teachers= Teacher.new(teacher_params)
 
     if @teachers.save
-      render json: @teachers, status: :created, location: @teachers
+      render json: @teachers, status: :created
     else
       render json: @teachers.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class TeachersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def teacher_params
-      params.fetch(:teacher, {})
+      params.permit(:name,:last_name,:degree)
     end
 end
