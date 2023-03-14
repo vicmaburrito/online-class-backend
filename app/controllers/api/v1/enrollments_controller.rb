@@ -15,7 +15,8 @@ class Api::V1::EnrollmentsController < ApplicationController
 
   # POST /classes or /classes.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
+    @enrollment = Enrollment.new(enrollment_params.merge(user_id:@current_user.id))    
+    @enrollment.user_id = @current_user.id
 
     if @enrollment.save
       render json: @enrollment, status: :created
