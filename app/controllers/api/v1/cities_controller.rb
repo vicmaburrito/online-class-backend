@@ -1,11 +1,11 @@
-class CitiesController < ApplicationController
+class Api::V1::CitiesController < ApplicationController
   before_action :set_city, only: %i[ show edit update destroy ]
 
   # GET /cities or /cities.json
   def index
     @cities = City.all
-
-    render json: @city
+    
+    render json: @cities
   end
 
   # GET /cities/1 or /cities/1.json
@@ -18,7 +18,7 @@ class CitiesController < ApplicationController
     @city = City.new(city_params)
 
     if @city.save
-      render json: @city, status: :created, location: @city
+      render json: @city, status: :created
     else
       render json: @city.errors, status: :unprocessable_entity
     end
@@ -46,7 +46,7 @@ class CitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def city_params
-      params.fetch(:city, {})
+      params.permit(:city_name)
     end
-
+    
 end
