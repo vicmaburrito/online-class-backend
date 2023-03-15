@@ -1,16 +1,7 @@
 class Api::V1::EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy ]
 
-  # GET /classes or /classes.json
-  def index
-    
-    sql = "SELECT * from enrollments as a
-          left join courses as b on a.course_id = b.id
-          WHERE a.user_id = #{@current_user.id}"
-    @enrollment = ActiveRecord::Base.connection.execute(sql)
-
-    render json: @enrollment
-  end 
+  # GET /enrollments or /enrollments.json
 
   def index
     enrollments = Enrollment
@@ -20,12 +11,12 @@ class Api::V1::EnrollmentsController < ApplicationController
     render json: enrollments
   end
 
-  # GET /classes/1 or /classes/1.json
+  # GET /enrollments/1 or /enrollments/1.json
   def show
     render json: @enrollment
   end
 
-  # POST /classes or /classes.json
+  # POST /enrollments or /enrollments.json
   def create
     @enrollment = Enrollment.new(enrollment_params.merge(user_id:@current_user.id))    
     @enrollment.user_id = @current_user.id
@@ -37,7 +28,7 @@ class Api::V1::EnrollmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /classes/1 or /classes/1.json
+  # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
     if @enrollment.update(enrollment_params)
       render json: @enrollment
@@ -46,7 +37,7 @@ class Api::V1::EnrollmentsController < ApplicationController
     end
   end
 
-  # DELETE /classes/1 or /classes/1.json
+  # DELETE /enrollments/1 or /enrollments/1.json
   def destroy
     @enrollment.destroy
   end

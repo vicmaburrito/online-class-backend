@@ -2,19 +2,19 @@ class  Api::V1::CoursesController < ApplicationController
   skip_before_action :authenticate_user, only: [:index]  
   before_action :set_course, only: %i[ show edit update destroy ]
 
-  # GET /classes or /classes.json
+  # GET /courses or /courses.json
   def index
     @course = Course.all
     
     render json: @course
   end
 
-  # GET /classes/1 or /classes/1.json
+  # GET /courses/1 or /courses/1.json
   def show
     render json: @course
   end
 
-  # POST /classes or /classes.json
+  # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
 
@@ -25,7 +25,7 @@ class  Api::V1::CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /classes/1 or /classes/1.json
+  # PATCH/PUT /courses/1 or /courses/1.json
   def update
     if @course.update(course_params)
       render json: @course
@@ -34,7 +34,7 @@ class  Api::V1::CoursesController < ApplicationController
     end
   end
 
-  # DELETE /classes/1 or /classes/1.json
+  # DELETE /courses/1 or /courses/1.json
   def destroy
     @course.destroy
   end
