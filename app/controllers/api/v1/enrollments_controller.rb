@@ -3,10 +3,20 @@ class Api::V1::EnrollmentsController < ApplicationController
 
   # GET /classes or /classes.json
   def index
+    
+    sql = "SELECT * from enrollments as a
+          left join courses as b on a.course_id = b.id
+          WHERE a.user_id = #{@current_user.id}"
+    @enrollment = ActiveRecord::Base.connection.execute(sql)
+
+    render json: @enrollment
+  end 
+
+  def index
     enrollments = Enrollment
                    .joins(:course)
                    .where(user_id: @current_user.id)
-                   .select('enrollments.*, courses.*')
+                   .select('enrollments.*, courses.*, enrollments.id AS enrollment_id')
     render json: enrollments
   end
 
