@@ -23,7 +23,7 @@ class Api::V1::EnrollmentsController < ApplicationController
     @enrollment.user_id = @current_user.id
 
     if @enrollment.save
-      render json: { message: 'Booked successfully.' }, status: :created, location: @enrollment
+      render json: { message: 'Booked successfully.' }, status: :created
     else
       render json: @enrollment.errors, status: :unprocessable_entity
     end
