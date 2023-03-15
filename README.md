@@ -180,12 +180,15 @@ or if you desire to test one file you can execute
 You can deploy this project using:
 
 - The databa.yml file is configured to be deployed with render, if you want to deploy it locally please.
+  - Comment the line 33 in the puma's file.
   - Change your credentials.
-  - default: &default
-  - adapter: postgresql
-  - encoding: unicode
   - username: postgres
   - password: 153624
+  - Execute: in the root directory the next commands:
+    - rails server - it will be deployed in the port:3000
+    - foreman start - it will be deployed in the port:5000
+
+- and execute
  
 > **Important if you are using "Windows" please remove .dev in the Procfile [Procfile] file in the root directory**
 > **Important if you are using "Unix-based" please add .dev in the Procfile [Procfile.dev] file in the root directory**
