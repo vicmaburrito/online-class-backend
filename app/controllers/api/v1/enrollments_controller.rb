@@ -10,6 +10,14 @@ class Api::V1::EnrollmentsController < ApplicationController
     @enrollment = ActiveRecord::Base.connection.execute(sql)
 
     render json: @enrollment
+  end 
+
+  def index
+    enrollments = Enrollment
+                   .joins(:course)
+                   .where(user_id: @current_user.id)
+                   .select('enrollments.*, courses.*, enrollments.id AS enrollment_id')
+    render json: enrollments
   end
 
   # GET /classes/1 or /classes/1.json
@@ -23,7 +31,7 @@ class Api::V1::EnrollmentsController < ApplicationController
     @enrollment.user_id = @current_user.id
 
     if @enrollment.save
-      render json: { message: 'Booked successfully.' }, status: :created, location: @enrollment
+      render json: { message: 'Booked successfully.' }, status: :created
     else
       render json: @enrollment.errors, status: :unprocessable_entity
     end

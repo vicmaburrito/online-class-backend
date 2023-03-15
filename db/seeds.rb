@@ -13,5 +13,5 @@ Course.create(name: "french", description: "french classes", max_num_students: 2
 
 
 Schedule.create(day_of_week: Date.today,start_time: Time.now,duration: Time.now,course_id: Course.first.id)
-Enrollment.create(sign_up_date: Date.today, course_id: Course.first.id,user_id: User.first.id, city_id: City.first.id)
-Enrollment.create(sign_up_date: Date.today, course_id: Course.first.id,user_id: User.first.id, city_id: City.last.id)
+# Enrollment.create(sign_up_date: Date.today, course_id: Course.first.id,user_id: User.first.id, city_id: City.first.id)
+# Enrollment.create(sign_up_date: Date.today, course_id: Course.first.id,user_id: User.first.id, city_id: City.last.id)
