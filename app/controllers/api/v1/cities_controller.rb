@@ -1,4 +1,5 @@
 class Api::V1::CitiesController < ApplicationController
+  skip_before_action :authenticate_user, only: [:index]
   before_action :set_city, only: %i[ show edit update destroy ]
 
   # GET /cities or /cities.json
