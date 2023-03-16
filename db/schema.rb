@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_205739) do
     t.string "description"
     t.integer "max_num_students"
     t.string "picture", default: "http://theindianite.weebly.com/uploads/4/3/3/7/43376815/college-classes_1_orig.jpg"
-    t.integer "teacher_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,14 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_205739) do
     t.datetime "start_time"
     t.time "duration"
     t.integer "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.string "name"
-    t.string "last_name"
-    t.string "degree"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

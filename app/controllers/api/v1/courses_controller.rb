@@ -16,7 +16,7 @@ class  Api::V1::CoursesController < ApplicationController
 
   # POST /courses or /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = Course.new(course_params.merge(user_id: @current_user.id))
 
     if @course.save
       render json: @course, status: :created
@@ -47,6 +47,6 @@ class  Api::V1::CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.permit(:name,:description,:max_num_students,:teacher_id)
+      params.permit(:name,:description,:max_num_students,:picture)
     end
 end
