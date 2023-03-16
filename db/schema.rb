@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_205739) do
     t.string "name"
     t.string "description"
     t.integer "max_num_students"
-    t.string "picture", default: "http://theindianite.weebly.com/uploads/4/3/3/7/43376815/college-classes_1_orig.jpg"
+    t.string "picture"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

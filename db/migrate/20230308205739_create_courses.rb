@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :max_num_students
-      t.string :picture, default: "http://theindianite.weebly.com/uploads/4/3/3/7/43376815/college-classes_1_orig.jpg"
+      t.string :picture
       t.integer :user_id # foreign key
       t.timestamps
     end
