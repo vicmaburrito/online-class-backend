@@ -33,6 +33,7 @@
 # 💻 Front end react app <a name="front-end-react-app"></a>
 - You can go through the link and execute the front-end react project to enjoy a view about what the api offer.
 - [FRONT-END-REACT-APP](https://github.com/vicmaburrito/online-class-frontend)
+- [Kanban Board](https://github.com/users/vicmaburrito/projects/2/views/1)
 # 📖 hello-rails-back-end <a name="about-project"></a>
 
 >  This is a project that create a reservation to a class in a school.
