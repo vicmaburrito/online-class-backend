@@ -28,14 +28,20 @@ class Api::V1::UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    unless @user.update(user_params)
-      render json: @users.errors, status: :unprocessable_entity 
+    if @user.update(schedule_params)
+      render json: @user, status: :ok
+    else
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
+    if @user.destroy
+      head :no_content
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
