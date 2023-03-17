@@ -31,7 +31,7 @@ class Api::V1::EnrollmentsController < ApplicationController
   # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
     if @enrollment.update(enrollment_params)
-      render json: @enrollment
+      render json: @enrollment, status: :ok
     else
       render json: @enrollment.errors, status: :unprocessable_entity
     end
@@ -39,7 +39,11 @@ class Api::V1::EnrollmentsController < ApplicationController
 
   # DELETE /enrollments/1 or /enrollments/1.json
   def destroy
-    @enrollment.destroy
+    if @enrollment.destroy
+      head :no_content
+    else
+      render json: { errors: @enrollment.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
