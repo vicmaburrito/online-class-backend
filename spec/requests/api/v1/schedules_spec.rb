@@ -4,9 +4,8 @@ RSpec.describe 'api/v1/schedules', type: :request do
   before(:each) do
     @user = User.create(username: 'juan', email: 'email@hotmail.com', password: '153624')
     @city = City.create(city_name: 'Brasil')
-    @teacher = Teacher.create(name: 'Carlos', last_name: 'perez', degree: 'mastery')
     @course = Course.create(name: 'French', description: 'english classes', max_num_students: 20,
-                            teacher_id: @teacher.id)
+                            user_id: @user.id)
     @schedule = Schedule.create(day_of_week: Date.today, start_time: Time.now, duration: Time.now,
                                 course_id: @course.id)
     token = jwt_encode({ user_id: @user.id })
@@ -107,9 +106,9 @@ RSpec.describe 'api/v1/schedules', type: :request do
         }
 
         response '200', 'Schedule updated' do
-          teacher = Teacher.create(name: 'jose', last_name: 'zepeda', degree: 'degree')
+          user = User.create(username: 'jose', email: 'zepeda@gmail.com', password: '12345')
           course = Course.create(name: 'english', description: 'english classes', max_num_students: 20,
-                                 teacher_id: teacher.id)
+                                 user_id: user.id)
           let(:id) do
             Schedule.create(day_of_week: Date.today, start_time: Time.now, duration: Time.now, course_id: course.id).id
           end

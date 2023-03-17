@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       resources :enrollments, only: [:index, :show, :create, :update, :destroy]
       resources :courses, only: [:index, :show, :create, :update, :destroy]
       resources :cities, only: [:index, :show, :create, :update, :destroy]
-      resources :teachers, only: [:index, :show, :create, :update, :destroy]
     end
   end
 

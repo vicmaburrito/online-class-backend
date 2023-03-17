@@ -4,9 +4,8 @@ RSpec.describe 'api/v1/enrollments', type: :request do
   before(:each) do
     @user = User.create(username: 'juan', email: 'email@hotmail.com', password: '153624')
     @city = City.create(city_name: 'Brasil')
-    @teacher = Teacher.create(name: 'Carlos', last_name: 'perez', degree: 'mastery')
     @course = Course.create(name: 'French', description: 'english classes', max_num_students: 20,
-                            teacher_id: @teacher.id)
+                            user_id: @user.id)
     @schedule = Schedule.create(day_of_week: Date.today, start_time: Time.now, duration: Time.now,
                                 course_id: @course.id)
     @enrollment = Enrollment.create(sign_up_date: Date.today, course_id: @course.id, user_id: @user.id,
