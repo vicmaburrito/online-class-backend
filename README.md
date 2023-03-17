@@ -93,9 +93,8 @@ Is a text string that has three Base64-encoded parts, each separated by a dot
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> You can see the deployment once it is executed in the next link.
+- [Live Demo Link](https://dev--remarkable-wisp-da7afd.netlify.app/)
 
-- Incomming.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -199,15 +198,31 @@ You can deploy this project using:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
-## 👥 Authors <a name="authors"></a>
+## Authors
+
+👤 **Mahdi Aghaali**
+
+- GitHub: [@MahdiAghaali](https://github.com/MahdiAghaali)
+- Twitter: [@Mohi_Aghaali](https://twitter.com/Mohi_Aghaali)
+- LinkedIn: [mahdi-aghaali](https://www.linkedin.com/in/mahdi-aghaali/)
+
+**Odette Gleen**
+
+- GitHub: [@Gleennkar](https://github.com/Gleennkar)
+- Twitter: [@gleeny24](https://twitter.com/twitterhandle)
+- LinkedIn: [@gleeny](https://www.linkedin.com/in/gleeny-nkar-aa3917182)
 
 👤 **JOSE ZEPEDA**
 
 - GitHub: [J2ZROMERO](https://github.com/J2ZROMERO)
 - Twitter: [@JOSEZEPED4](https://twitter.com/JOSEZEPED4)
 - LinkedIn: [JOSE ZEPEDA](https://www.linkedin.com/in/jose-zepeda-733ab91ab/)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+👤 **Manuel Aldaraca**
+
+- https://www.linkedin.com/in/manuelaldaraca/
+- https://twitter.com/manuelaldaraca
+- https://github.com/vicmaburrito
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
