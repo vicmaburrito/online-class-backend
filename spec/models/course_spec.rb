@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Course, type: :model do
   before(:each) do
     @user = User.create!(username: 'admin', email: 'admin@hotmail.com', password: '123_456')
     @course = Course.new(name: 'ruby', description: 'Learning fast ruby', max_num_students: 20, user_id: @user.id)
