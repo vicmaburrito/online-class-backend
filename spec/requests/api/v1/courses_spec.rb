@@ -3,9 +3,8 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/courses', type: :request do
   before(:each) do
     @user = User.create(username: 'juan', email: 'email@hotmail.com', password: '153624')
-    @teacher = Teacher.create(name: 'Carlos', last_name: 'perez', degree: 'mastery')
     @course = Course.create(name: 'French', description: 'english classes', max_num_students: 20,
-                            teacher_id: @teacher.id)
+                            user_id: @user.id)
     token = jwt_encode({ user_id: @user.id })
     headers = { 'Authorization' => "Bearer #{token}" }
     allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(headers)
@@ -23,7 +22,7 @@ RSpec.describe 'api/v1/courses', type: :request do
                    name: { type: :string },
                    description: { type: :string },
                    max_num_students: { type: :integer },
-                   teacher_id: { type: :integer },
+                   user_id: { type: :integer },
                    created_at: { type: :datetime },
                    updated_at: { type: :datetime }
                  }
@@ -43,14 +42,14 @@ RSpec.describe 'api/v1/courses', type: :request do
             name: { type: :string },
             description: { type: :string },
             max_num_students: { type: :integer },
-            teacher_id: { type: :integer }
+            user_id: { type: :integer }
           },
-          required: ['name', 'description', 'teacher_id, max_num_students']
+          required: ['name', 'description', 'user_id, max_num_students']
         }
 
         response '201', 'Course created' do
           let(:course_params) do
-            { name: 'emanuel', description: 'from another country', max_num_students: 10, teacher_id: @teacher.id }
+            { name: 'ruby', description: 'learn ruby', max_num_students: 10, user_id: @user.id }
           end
           run_test!
         end
@@ -65,7 +64,7 @@ RSpec.describe 'api/v1/courses', type: :request do
     # show
     path 'api/v1/courses/{id}' do
       get 'show a course' do
-        tags 'Teacher'
+        tags 'User'
         consumes 'application/json'
         parameter name: :id, in: :path, schema: {
           type: :object,
@@ -102,7 +101,7 @@ RSpec.describe 'api/v1/courses', type: :request do
         response '200', 'Course updated' do
           let(:id) { @course.id }
           let(:course_params) do
-            { name: 'emanuel', description: 'frmo puebla', max_num_students: 10, teacher_id: @teacher.id }
+            { name: 'rails', description: 'learn rails fast', max_num_students: 10, user_id: @user.id }
           end
           run_test!
         end

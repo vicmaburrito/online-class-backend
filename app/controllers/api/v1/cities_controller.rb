@@ -28,7 +28,7 @@ class Api::V1::CitiesController < ApplicationController
   # PATCH/PUT /cities/1 or /cities/1.json
   def update
     if @city.update(city_params)
-      render json: @city
+      render json: @city, status: :ok
     else
       render json: @city.errors, status: :unprocessable_entity
     end
@@ -36,7 +36,11 @@ class Api::V1::CitiesController < ApplicationController
 
   # DELETE /cities/1 or /cities/1.json
   def destroy
-    @city.destroy
+    if @city.destroy
+      head :no_content
+    else
+      render json: { errors: @city.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private

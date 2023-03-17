@@ -29,7 +29,7 @@ class  Api::V1::CoursesController < ApplicationController
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
     if @course.update(course_params)
-      render json: @course
+      render json: @course, status: :ok
     else
       render json: @course.errors, status: :unprocessable_entity
     end
@@ -37,7 +37,11 @@ class  Api::V1::CoursesController < ApplicationController
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
-    @course.destroy
+    if @course.destroy
+      head :no_content
+    else
+      render json: { errors: @course.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
