@@ -24,14 +24,17 @@ RSpec.describe User, type: :model do
       course = Course.new(name: nil)
       expect(course).to_not be_valid
     end
+
     it 'is not valid without an description' do
       course = Course.new(description: nil)
       expect(course).to_not be_valid
     end
+
     it 'is not valid without an max num students' do
       course = Course.new(max_num_students: nil)
       expect(course).to_not be_valid
     end
+
     it 'is not valid without an user id' do
       course = Course.new(user_id: nil)
       expect(course).to_not be_valid
