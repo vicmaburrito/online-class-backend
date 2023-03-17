@@ -1,0 +1,404 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/cities":
+    get:
+      summary: fetch data to the citites table
+      tags:
+      - data from the cities page
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  country_name:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  country_name:
+                    type: string
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+    post:
+      summary: Creates a city
+      tags:
+      - Cities
+      parameters: []
+      responses:
+        '201':
+          description: city created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city_name:
+                  type: string
+                created_at:
+                  type: datetime
+                updated_at:
+                  type: datetime
+              required:
+              - city_name
+  api/v1/cities/{id}:
+    get:
+      summary: show a city
+      tags:
+      - Cities
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: City founded
+    delete:
+      summary: Delete a city
+      tags:
+      - Cities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: City deleted
+  "/api/v1/cities/{id}":
+    patch:
+      summary: Updates the selected city
+      tags:
+      - Cities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: city updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city_name:
+                  type: string
+              required:
+              - city_name
+  "/api/v1/courses":
+    get:
+      summary: fetch data to the courses table
+      tags:
+      - data from the courses route
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  max_num_students:
+                    type: integer
+                  user_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  max_num_students:
+                    type: integer
+                  user_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+    post:
+      summary: Creates a course
+      tags:
+      - Course
+      parameters: []
+      responses:
+        '201':
+          description: Course created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                max_num_students:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+              - name
+              - description
+              - user_id, max_num_students
+  api/v1/courses/{id}:
+    get:
+      summary: show a course
+      tags:
+      - User
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: Course founded founded
+    delete:
+      summary: Delete a course
+      tags:
+      - Courses
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Course deleted
+  "/api/v1/courses/{id}":
+    patch:
+      summary: Updates the selected Course
+      tags:
+      - Course
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Course updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                max_num_students:
+                  type: integer
+              required:
+              - name
+              - description
+              - max_num_students
+  "/api/v1/enrollments":
+    get:
+      summary: fetch data to the enrollments table
+      tags:
+      - data from the enrollments route
+      responses:
+        '200':
+          description: List of data fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  sign_up_date:
+                    type: date
+                  course_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  city_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+            application/xml:
+              schema:
+                type: array
+                properties:
+                  sign_up_date:
+                    type: date
+                  course_id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  city_id:
+                    type: integer
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+    post:
+      summary: Creates a enrollments
+      tags:
+      - Enrollments
+      parameters: []
+      responses:
+        '201':
+          description: Enrollment created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sign_up_date:
+                  type: date
+                course_id:
+                  type: integer
+                user_id:
+                  type: integer
+                city_id:
+                  type: integer
+              required:
+              - sign_up_date
+              - course_id
+              - user_id
+              - city_id
+  api/v1/enrollments/{id}:
+    get:
+      summary: show an enrollment
+      tags:
+      - Enrollment
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            sign_up_date:
+              type: date
+            course_id:
+              type: integer
+            user_id:
+              type: integer
+            city_id:
+              type: integer
+          required:
+          - id
+        required: true
+      responses:
+        '200':
+          description: 'Enrollment founded '
+    delete:
+      summary: Delete a enrollment
+      tags:
+      - Enrollments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Enrollment deleted
+  "/api/v1/enrollments/{id}":
+    patch:
+      summary: Updates the selected Enrollment
+      tags:
+      - Enrollment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Enrollment updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                sign_up_date:
+                  type: date
+                course_id:
+                  type: integer
+                user_id:
+                  type: integer
+                city_id:
+                  type: integer
+              required:
+              - sign_up_date
+              - course_id
+              - user_id
+              - city_id
+servers:
+- url: http://127.0.0.1:5000/
+  variables:
+    defaultHost:
+      default: http://127.0.0.1:5000/
