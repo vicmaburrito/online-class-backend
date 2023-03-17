@@ -28,7 +28,7 @@ class Api::V1::CitiesController < ApplicationController
   # PATCH/PUT /cities/1 or /cities/1.json
   def update
     if @city.update(city_params)
-      render json: @city, status :ok
+      render json: @city, status: :ok
     else
       render json: @city.errors, status: :unprocessable_entity
     end
