@@ -11,7 +11,7 @@ RSpec.describe City, type: :model do
     end
   end
 
-  describe 'When user model wants to be save it' do
+  describe 'When city model wants to be save it' do
     it 'is valid with valid attributes' do
       expect(@city).to be_valid
     end
